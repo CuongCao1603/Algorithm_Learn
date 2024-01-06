@@ -1,0 +1,13 @@
+Note: Binary Search : Lession 1
+
+
+
+
+
+
+Lession 7: BFS search
+	Binary Tree
+	+ Pre-order
+	+ In-order
+	+ Post-order
+	+ Level-order
