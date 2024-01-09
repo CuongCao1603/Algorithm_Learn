@@ -44,28 +44,32 @@ public class Solution_Draft {
 
         int TestCase = Integer.parseInt(br.readLine());
 
-        for (int test_case = 0; test_case < TestCase; test_case++) {
+        for (int test_case = 1; test_case < TestCase; test_case++) {
             int len = Integer.parseInt(br.readLine());
-            int[] input = new int[len];
-             st = new StringTokenizer(br.readLine(), " ");
-            for (int i = 0; i < len; i++) {
-                input[i] = Integer.parseInt(st.nextToken());
-            }
+            StringTokenizer st = new StringTokenizer(" ");
+            int targetSum = Integer.parseInt(st.nextToken());
 
-            // Solution
-             trees = new TreeNode[len];
-            for (int i = 0; i < len; i++) {
-                if(input[i]!= -1)
-                    trees[i] = new TreeNode(input[i]);
-            }
-
-            for (int i = 0; 2*i+2 < len ; i++) {
-                trees[i].left = trees[2 * i + 1];
-                trees[i].right = trees[2 * i + 2];
-            }
-
-            int targetSum;
-            boolean ans = hasPathSum(trees[0], targetSum);
+            System.out.println("TargetSum: " + targetSum);
+//            int[] input = new int[len];
+//             st = new StringTokenizer(br.readLine(), " ");
+//            for (int i = 0; i < len; i++) {
+//                input[i] = Integer.parseInt(st.nextToken());
+//            }
+//
+//            // Solution
+//             trees = new TreeNode[len];
+//            for (int i = 0; i < len; i++) {
+//                if(input[i]!= -1)
+//                    trees[i] = new TreeNode(input[i]);
+//            }
+//
+//            for (int i = 0; 2*i+2 < len ; i++) {
+//                trees[i].left = trees[2 * i + 1];
+//                trees[i].right = trees[2 * i + 2];
+//            }
+//
+//            int targetSum;
+//            boolean ans = hasPathSum(trees[0], targetSum);
         }
 
     }
