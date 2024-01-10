@@ -1,4 +1,4 @@
-package Lession7_BFS;
+package Lesssion7_BFSearch_4_1_24.src.Lession7_BFS;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
