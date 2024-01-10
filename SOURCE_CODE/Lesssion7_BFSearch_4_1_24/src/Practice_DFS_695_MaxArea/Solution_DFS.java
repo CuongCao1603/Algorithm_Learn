@@ -7,11 +7,13 @@ import java.util.StringTokenizer;
 
 class Node {
     int x, y;
+
     public Node(int x, int y) {
         this.x = x;
         this.y = y;
     }
 }
+
 public class Solution_DFS {
     public static void main(String[] args) throws IOException {
         System.setIn(new FileInputStream("D:/FILE_CUA_CUONG/THUAT_TOAN_FSOFT_FALL23/SOURCE_CODE/" +
@@ -53,7 +55,7 @@ public class Solution_DFS {
             for (int j = 0; j < col; j++) {
                 if (!visited[i][j] && grid[i][j] == 1) {
                     count = bfs(grid, visited, i, j, 0);
-                    if(count > ans)
+                    if (count > ans)
                         ans = count;
                 }
             }
@@ -111,7 +113,6 @@ public class Solution_DFS {
                 }
             }
         }
-
         return count;
     }
 
