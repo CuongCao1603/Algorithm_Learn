@@ -77,6 +77,34 @@ public class MyFirstLinkedList {
         return headNode;
     }
 
+    public static Node removeAtHead(Node headNode){
+        if(headNode !=null){
+            return headNode.next;
+        }
+        return headNode;
+    }
+
+    public static Node removeAtTail(Node headNode){
+        if(headNode == null){
+            return null;
+        }
+
+        Node lastNode = headNode;
+        Node prevNode = null;
+
+        while (lastNode.next !=null){
+            prevNode = lastNode;
+            lastNode = lastNode.next;
+        }
+        if(prevNode == null){
+            return null;
+        } else{
+            prevNode.next = lastNode.next;
+        }
+
+        return headNode;
+    }
+
     public static void main(String[] args) {
         Node n1 = new Node(1);
         Node n2 = new Node(2);
@@ -86,12 +114,24 @@ public class MyFirstLinkedList {
         n2.next = n3;
 
         printLinkedList(n1);
-        n1 = addToIndex(n1, 0,0);
+        n1 = removeAtTail(n1);
         printLinkedList(n1);
-        n1 = addToIndex(n1, 4, 0);
+        n1 = removeAtTail(n1);
         printLinkedList(n1);
-        n1 = addToIndex(n1, 1,1);
-        printLinkedList(n1);
+
+
+//        n1 = removeAtHead(n1);
+//        printLinkedList(n1);
+//        n1 = removeAtHead(n1);
+//        printLinkedList(n1);
+
+
+//        n1 = addToIndex(n1, 0,0);
+//        printLinkedList(n1);
+//        n1 = addToIndex(n1, 4, 0);
+//        printLinkedList(n1);
+//        n1 = addToIndex(n1, 1,1);
+//        printLinkedList(n1);
 
 //        n1 = addToTail(n1, 4);
 //        n1 = addToHead(n1, 0);
