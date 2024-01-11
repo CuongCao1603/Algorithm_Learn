@@ -5,24 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-//class NodePractice {
-//    int x, y;
-//
-//    public NodePractice(int x, int y) {
-//        this.x = x;
-//        this.y = y;
-//    }
-//}
 public class HexagonalGrid_Draft {
     private static BufferedReader br;
-
-    //    private static TreeNodeRetake[] trees;
-    private static int len;
-
-    //    private static int row;
-//    private static int col;
     private static int[][] grid;
-
     static int row;
     static int col;
 
@@ -33,11 +18,10 @@ public class HexagonalGrid_Draft {
         StringTokenizer st;
         int TestCase =
 //                2
-                Integer.parseInt(br.readLine())
-                ;
+                Integer.parseInt(br.readLine());
 
         int[][] matrix;
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < TestCase; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             row = Integer.parseInt(st.nextToken());
             col = Integer.parseInt(st.nextToken());
@@ -45,13 +29,13 @@ public class HexagonalGrid_Draft {
             grid = new int[row][col];
 
             for (int j = 0; j < row; j++) {
-                System.out.println("Value row ");
+//                System.out.println("Value row ");
                 st = new StringTokenizer(br.readLine(), " ");
                 for (int k = 0; k < col; k++) {
 
                     int value = Integer.parseInt(st.nextToken());
                     grid[j][k] = value;
-                    System.out.printf(" " + grid[j][k]);
+//                    System.out.printf(" " + grid[j][k]);
                 }
 
             }
@@ -66,121 +50,71 @@ public class HexagonalGrid_Draft {
         int ans = 0;
         row = grid.length;
         col = grid[0].length;
-        int sum = 0;
 
         boolean[][] visited;
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-//                if (j % 2 == 1) {
-                visited = new boolean[i][j];
-                sum = dfs4Node(visited, i, j, sum, 1);
-//                    if (sum > ans)
-//                        ans = sum;
-//                }
-//                if (j % 2 == 0) {
-//                    sum = dfs4NodeChan(grid, i, j, sum, 1);
-//                    if (sum > ans)
-//                        ans = sum;
-//                }
+                visited = new boolean[row][col]; // Khởi tạo mảng visited mới
+                int sum = dfs4Node(visited, i, j, 0, 0);
+                ans = Math.max(ans, sum);
             }
         }
         return ans;
     }
+    private static int dfs4Node(boolean[][] visited, int x, int y, int sum, int count) {
+        if (x < 0 || x >= row || y < 0 || y >= col || visited[x][y] || count == 4) {
+            return sum;
+        }
 
-    private static int dfs4NodeChan(int[][] grid, int x, int y, int sum, int count) {
-//        count++;
-        int row = grid.length;
-        int col = grid[0].length;
+        visited[x][y] = true;
         sum += grid[x][y];
 
-        if (count == 4)
-//        {
-            return sum;
-//        }
-        if (x > 0)
-//        {
-            return dfs4NodeChan(grid, x - 1, y, sum, count++);
-//        }
+        int maxSum = sum;
+
+        // Up
+        if (x > 0) {
+            maxSum = Math.max(maxSum, dfs4Node(visited, x - 1, y, sum, count + 1));
+        }
 
         // Down
-        if (x < row - 1)
-//        {
-            return dfs4NodeChan(grid, x + 1, y, sum, count++);
-//        }
+        if (x < row - 1) {
+            maxSum = Math.max(maxSum, dfs4Node(visited, x + 1, y, sum, count + 1));
+        }
 
         // Left
-        if (y > 0)
-//        {
-            return dfs4NodeChan(grid, x, y - 1, sum, count++);
-//        }
+        if (y > 0) {
+            maxSum = Math.max(maxSum, dfs4Node(visited, x, y - 1, sum, count + 1));
+        }
 
         // Right
-        if (y < col - 1)
-//        {
-            return dfs4NodeChan(grid, x, y + 1, sum, count++);
-//        }
+        if (y < col - 1) {
+            maxSum = Math.max(maxSum, dfs4Node(visited, x, y + 1, sum, count + 1));
+        }
 
-        // x + 1, y + 1
-        if (x + 1 < row && y + 1 < col)
-//        {
-            return dfs4NodeChan(grid, x + 1, y + 1, sum, count++);
-//        }
-
-        // x -1 , y + 1
-        if (y + 1 < col && x > 0)
-//        {
-
-            return dfs4NodeChan(grid, x - 1, y + 1, sum, count++);
-//        }
-
-        return sum;
-    }
-
-    private static int dfs4Node(boolean[][] visited, int x, int y, int sum, int count) {
-
-//        count++;
-//        visited[x][y] = true;
-        sum += grid[x][y];
-        System.out.print("Value grid: " + grid[x][y]);
-
-        System.out.println("Test count: " + count);
-        System.out.println("Test sum: " + sum);
-        System.out.println("--------------------------------");
-        if (count == 4) {
-            return sum;
+        // Up-right and Down-right (dependent on the row being even or odd)
+        if (x % 2 == 0) {
+            // For even rows
+            if (x > 0 && y < col - 1) {
+                maxSum = Math.max(maxSum, dfs4Node(visited, x - 1, y + 1, sum, count + 1)); // Up-right
+            }
+            if (x < row - 1 && y < col - 1) {
+                maxSum = Math.max(maxSum, dfs4Node(visited, x + 1, y + 1, sum, count + 1)); // Down-right
+            }
         } else {
-            if (x > 0) {
-                dfs4Node(visited, x - 1, y, sum, count + 1);
+            // For odd rows
+            if (x > 0 && y > 0) {
+                maxSum = Math.max(maxSum, dfs4Node(visited, x - 1, y - 1, sum, count + 1)); // Up-right
             }
-
-            // Down
-            if (x < row - 1) {
-                dfs4Node(visited, x + 1, y, sum, count + 1);
-            }
-
-            // Left
-            if (y > 0) {
-                dfs4Node(visited, x, y - 1, sum, count + 1);
-            }
-
-            // Right
-            if (y < col - 1) {
-                dfs4Node(visited, x, y + 1, sum, count + 1);
-            }
-
-            // x + 1, y + 1
-            if (x + 1 < row && y + 1 < col) {
-                dfs4Node(visited, x + 1, y + 1, sum, count + 1);
-            }
-
-            // x -1 , y + 1
-            if (y + 1 < col && x > 0) {
-
-                dfs4Node(visited, x - 1, y + 1, sum, count + 1);
+            if (x < row - 1 && y > 0) {
+                maxSum = Math.max(maxSum, dfs4Node(visited, x + 1, y - 1, sum, count + 1)); // Down-right
             }
         }
-        return sum;
+        // Đặt lại trạng thái của điểm này là chưa thăm
+        visited[x][y] = false;
 
+        return maxSum;
     }
+
+
 }

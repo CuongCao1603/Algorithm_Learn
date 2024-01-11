@@ -1,4 +1,4 @@
-package Solution_BFS;
+package Lesssion7_BFSearch_4_1_24.src.Solution_BFS;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
