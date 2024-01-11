@@ -5,9 +5,7 @@ import java.util.StringTokenizer;
 
 public class HexagonalGrid_Draft {
     private static BufferedReader br;
-
     private static int[][] grid;
-
     static int row;
     static int col;
 
@@ -21,7 +19,7 @@ public class HexagonalGrid_Draft {
                 Integer.parseInt(br.readLine());
 
         int[][] matrix;
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < TestCase; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             row = Integer.parseInt(st.nextToken());
             col = Integer.parseInt(st.nextToken());
@@ -29,13 +27,13 @@ public class HexagonalGrid_Draft {
             grid = new int[row][col];
 
             for (int j = 0; j < row; j++) {
-                System.out.println("Value row ");
+//                System.out.println("Value row ");
                 st = new StringTokenizer(br.readLine(), " ");
                 for (int k = 0; k < col; k++) {
 
                     int value = Integer.parseInt(st.nextToken());
                     grid[j][k] = value;
-                    System.out.printf(" " + grid[j][k]);
+//                    System.out.printf(" " + grid[j][k]);
                 }
 
             }
