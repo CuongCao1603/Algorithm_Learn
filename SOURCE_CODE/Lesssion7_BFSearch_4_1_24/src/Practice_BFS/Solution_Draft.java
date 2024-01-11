@@ -112,7 +112,6 @@ class TreeNode {
         this.right = right;
     }
 }
-
 public class Solution_Draft {
     private static BufferedReader br;
     private static StringTokenizer st;
