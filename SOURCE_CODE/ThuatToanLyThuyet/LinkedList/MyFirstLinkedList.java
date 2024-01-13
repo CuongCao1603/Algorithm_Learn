@@ -1,5 +1,8 @@
 package ThuatToanLyThuyet.LinkedList;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MyFirstLinkedList {
 
     public static class Node {
@@ -14,7 +17,9 @@ public class MyFirstLinkedList {
     public static void printLinkedList(Node head) {
         if (head == null) {
             System.out.println("List is empty");
-        } else {
+        }
+        else
+        {
             Node temp = head;
             while (temp != null) {
                 System.out.print(temp.value);
@@ -77,29 +82,66 @@ public class MyFirstLinkedList {
         return headNode;
     }
 
-    public static Node removeAtHead(Node headNode){
-        if(headNode !=null){
+    public static Node removeAtHead(Node headNode) {
+        if (headNode != null) {
             return headNode.next;
         }
         return headNode;
     }
 
-    public static Node removeAtTail(Node headNode){
-        if(headNode == null){
+    public static Node removeAtTail(Node headNode) {
+        if (headNode == null) {
             return null;
         }
 
         Node lastNode = headNode;
         Node prevNode = null;
 
-        while (lastNode.next !=null){
+        while (lastNode.next != null) {
             prevNode = lastNode;
             lastNode = lastNode.next;
         }
-        if(prevNode == null){
+        if (prevNode == null) {
             return null;
-        } else{
+        } else {
             prevNode.next = lastNode.next;
+        }
+
+        return headNode;
+    }
+
+    public static Node removeAtIndex(Node headNode, int index) {
+        if (headNode == null || index < 0) {
+            return null;
+        }
+        if (index == 0) {
+            removeAtHead(headNode);
+        }
+        Node currNode = headNode;
+        Node prevNode = null;
+
+        int count = 0;
+        boolean bIsFound = false;
+        while (currNode != null) {
+            if (count == index) {
+                // Remove currNode
+                bIsFound = true;
+                break;
+            }
+            prevNode = currNode;
+            currNode = currNode.next;
+            count++;
+        }
+        // Remove curr
+        if (bIsFound) {
+            if (prevNode == null) { // Current Node is Last Node
+                return null;
+            } else {
+                if (currNode != null) {
+                    prevNode.next = currNode.next;
+                }
+            }
+
         }
 
         return headNode;
@@ -114,10 +156,19 @@ public class MyFirstLinkedList {
         n2.next = n3;
 
         printLinkedList(n1);
-        n1 = removeAtTail(n1);
+
+        n1 = removeAtIndex(n1, 0);
         printLinkedList(n1);
-        n1 = removeAtTail(n1);
-        printLinkedList(n1);
+//        n1 = removeAtIndex(n1, 1);
+//        printLinkedList(n1);
+//        n1 = removeAtIndex(n1, 1);
+//        printLinkedList(n1);
+
+
+//        n1 = removeAtTail(n1);
+//        printLinkedList(n1);
+//        n1 = removeAtTail(n1);
+//        printLinkedList(n1);
 
 
 //        n1 = removeAtHead(n1);
@@ -142,5 +193,9 @@ public class MyFirstLinkedList {
 
 //        Node newList =  addToHead(n1,0);
 //        printLinkedList(newList);
+
+
     }
+
+
 }
