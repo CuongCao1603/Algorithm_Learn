@@ -8,7 +8,6 @@ public class MyFirstLinkedList {
     public static class Node {
         int value;
         Node next;
-
         Node(int value) {
             this.value = value;
         }
@@ -115,7 +114,7 @@ public class MyFirstLinkedList {
             return null;
         }
         if (index == 0) {
-            removeAtHead(headNode);
+          return  removeAtHead(headNode);
         }
         Node currNode = headNode;
         Node prevNode = null;
@@ -157,8 +156,8 @@ public class MyFirstLinkedList {
 
         printLinkedList(n1);
 
-        n1 = removeAtIndex(n1, 0);
-        printLinkedList(n1);
+//        n1 = removeAtIndex(n1, 0);
+//        printLinkedList(n1);
 //        n1 = removeAtIndex(n1, 1);
 //        printLinkedList(n1);
 //        n1 = removeAtIndex(n1, 1);
@@ -184,9 +183,13 @@ public class MyFirstLinkedList {
 //        n1 = addToIndex(n1, 1,1);
 //        printLinkedList(n1);
 
-//        n1 = addToTail(n1, 4);
-//        n1 = addToHead(n1, 0);
-//        printLinkedList(n1);
+        n1 = addToTail(n1, 4);
+        System.out.println("Test: " + n1.value);
+        n1 = addToHead(n1, 0);
+        printLinkedList(n1);
+        n1 = addToTail(n1, 7);
+        System.out.println("Test2: " + n1.value);
+        printLinkedList(n1);
 
 //        n1 = addToHead(n1,0);
 //        printLinkedList(n1);
