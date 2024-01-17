@@ -31,6 +31,64 @@ public class Reverse_LinkedList {
         return head;
     }
 
+//    class LinkedList {
+//        Node head;
+//
+//        public LinkedList() {
+//            this.head = null;
+//        }
+//
+//        // Phương thức để thêm một nút vào cuối danh sách liên kết
+//        public void append(int data) {
+//            Node newNode = new Node(data);
+//            if (head == null) {
+//                head = newNode;
+//                return;
+//            }
+//            Node last = head;
+//            while (last.next != null) {
+//                last = last.next;
+//            }
+//            last.next = newNode;
+//        }
+//
+//        // Phương thức để hiển thị danh sách liên kết
+//        public void display() {
+//            Node current = head;
+//            while (current != null) {
+//                System.out.print(current.data + " ");
+//                current = current.next;
+//            }
+//            System.out.println();
+//        }
+//    }
+
+//    // Phương thức để thêm một nút vào cuối danh sách liên kết
+//    public void append(int data) {
+//        Node newNode = new Node(data);
+//        if (head == null) {
+//            head = newNode;
+//            return;
+//        }
+//        Node last = head;
+//        while (last.next != null) {
+//            last = last.next;
+//        }
+//        last.next = newNode;
+//    }
+//
+//    // Phương thức để hiển thị danh sách liên kết
+//    public void display() {
+//        Node current = head;
+//        while (current != null) {
+//            System.out.print(current.data + " ");
+//            current = current.next;
+//        }
+//        System.out.println();
+//    }
+//}
+
+
     public static void printLinkedList(ListNode head){
         while (head !=null){
             System.out.printf("%d ", head.val);
