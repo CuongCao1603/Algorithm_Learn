@@ -1,5 +1,8 @@
 package ThuatToanLyThuyet.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyBST {
     public TreeNode mRoot;
 
@@ -42,7 +45,7 @@ public class MyBST {
     }
 
     // Node - L - R
-    public void preOrder(TreeNode currNode){
+    public static void preOrder(TreeNode currNode){
         if(currNode == null){
             return;
         }
@@ -50,6 +53,45 @@ public class MyBST {
         System.out.print(currNode.val+" ");
         preOrder(currNode.left);
         preOrder(currNode.right);
+    }
+
+    //  L - Node - R
+    public static void inOrder(TreeNode currNode){
+        if(currNode == null){
+            return;
+        }
+        // duyet curr truoc
+
+        inOrder(currNode.left);
+
+        System.out.print(currNode.val+" ");
+
+        inOrder(currNode.right);
+    }
+
+    //  L - R - Node
+    public static void postOrder(TreeNode currNode){
+        if(currNode == null){
+            return;
+        }
+        // duyet curr truoc
+
+        postOrder(currNode.left);
+        postOrder(currNode.right);
+        System.out.print(currNode.val+" ");
+
+    }
+
+    List<Integer> duyetOrder = new ArrayList<>();
+    public List<Integer> perorderTraversal(TreeNode root){
+        if(root == null)
+           return duyetOrder;
+        duyetOrder.add(root.val);
+        // duyet curr truoc
+//        System.out.print(currNode.val+" ");
+        perorderTraversal(root.left);
+        perorderTraversal(root.right);
+        return duyetOrder;
     }
 
 
