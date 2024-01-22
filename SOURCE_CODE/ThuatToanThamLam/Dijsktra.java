@@ -9,9 +9,10 @@ import java.util.Queue;
 public class Dijsktra {
 
     static final int INF = Integer.MAX_VALUE;
+
     public static void main(String[] args) {
-        int graph[][] = new int[][] { { 0, 0, 1, 2, 0, 0, 0 }, { 0, 0, 2, 0, 0, 3, 0 }, { 1, 2, 0, 1, 3, 0, 0 },
-                { 2, 0, 1, 0, 0, 0, 1 }, { 0, 0, 3, 0, 0, 2, 0 }, { 0, 3, 0, 0, 2, 0, 1 }, { 0, 0, 0, 1, 0, 1, 0 } };
+        int graph[][] = new int[][]{{0, 0, 1, 2, 0, 0, 0}, {0, 0, 2, 0, 0, 3, 0}, {1, 2, 0, 1, 3, 0, 0},
+                {2, 0, 1, 0, 0, 0, 1}, {0, 0, 3, 0, 0, 2, 0}, {0, 3, 0, 0, 2, 0, 1}, {0, 0, 0, 1, 0, 1, 0}};
         int[] distance = dijkstra(graph, 0);
 
         System.out.println(Arrays.toString(distance));
@@ -37,14 +38,14 @@ public class Dijsktra {
         distance[start] = 0;
         PQ.add(new Node(start, distance[start]));
 
-        while (!PQ.isEmpty()){
+        while (!PQ.isEmpty()) {
             Node curr = PQ.remove();
             int u = curr.n;
 
             for (int i = 0; i < V; i++) {
-                if(graph[u][i] > 0){
+                if (graph[u][i] > 0) {
                     int v = i;
-                    if(distance[v] > distance[u] + graph[u][v]){
+                    if (distance[v] > distance[u] + graph[u][v]) {
                         distance[v] = distance[u] + graph[u][v];
                         PQ.add(new Node(v, distance[v]));
                     }
@@ -55,7 +56,7 @@ public class Dijsktra {
         return distance;
     }
 
-    static class Node implements Comparable<Node>{
+    static class Node implements Comparable<Node> {
         int n;
         int d;
 
